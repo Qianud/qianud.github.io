@@ -1,0 +1,187 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Joey">
+    <meta name="keywords" content="user experience design, ux, ui">
+    <meta name="description" content="Joey's portfolio">
+    <title>Guo Fuqiang - a user PHP Programmers</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+<img class="loading-gif" src="/img/loading.gif" alt="loading">
+<div class="header container-fluid collapseda hidden">
+    <a href="../index.html">
+        <span class="logo work-logo">logo</span>
+        <span class="logo-name work-logo-name">Qian Du</span>
+    </a>
+</div>
+<div class="wrap work-detail hidden">
+    <div class="work-header-img"></div>
+    <div class="work-header">
+            <div class="verticle-align-m">
+                <span class="work-name">php使用mysql数据库！</span>
+                <span class="work-des">对pdo/mysqli的连接方式。与数据库的一些知识；;</span>
+            </div>
+        </div>
+    </div>
+    <div class="text-intro content-frame">
+        <div class="contaianer-fluid">
+    
+            <blockquote>
+  <p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+</blockquote>
+
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+咱们先了解一下什么是mysql？先看一看官方的介绍：
+<br /></p>
+<hr />
+
+<p><br />
+MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于Oracle 旗下产品。MySQL 最流行的关系型数据库管理系统，在 WEB 应用方面MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。
+MySQL是一种关联数据库管理系统，关联数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。
+MySQL所使用的 SQL 语言是用于访问数据库的最常用标准化语言。MySQL 软件采用了双授权政策，它分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。
+由于其社区版的性能卓越，搭配 PHP 和Apache 可组成良好的开发环境。
+<br />
+<br />
+<br /></p>
+<font color="red">表单的代码就不写了，直接上关于数据库方面的代码</font>
+<p><br /></p>
+<hr />
+
+<p><br /></p>
+<pre>
+	<code>
+//首先来了解一下基本的sql语句
+选择：select * from table1 where 范围
+插入：insert into table1(field1,field2) values(value1,value2)
+删除：delete from table1 where 范围
+更新：update table1 set field1=value1 where 范围
+查找：select * from table1 where field1 like '%value1%' ---like的语法很精妙，查资料!
+排序：select * from table1 order by field1,field2 [desc]
+总数：select count as totalcount from table1
+求和：select sum(field1) as sumvalue from table1
+平均：select avg(field1) as avgvalue from table1
+最大：select max(field1) as maxvalue from table1
+最小：select min(field1) as minvalue from table1 
+	</code>
+</pre>
+<p><br /></p>
+<hr />
+
+<p><br />
+通过以上基本的sql语句，我想大家应该对mysql语句有所了解，看下面；
+<br /></p>
+<hr />
+
+<p><br /></p>
+<pre>
+	<code>
+	//使用pdo连接数据库！
+	$dsn = "mysql:host=127.0.0.1;dbname=php7";//连接数据库  
+	$db = new PDO($dsn,'root','root');//数据库账号密码  
+	$name=$_POST['name'];//接值  
+	//$name="zhangsan' or 'a' ='a";  
+	$pwd=$_POST['pwd'];  
+	$sql="select * from pdo1 where name='$name' and pwd ='$pwd'";  
+	$sql="select * from pdo1 where name =? and pwd =?";  
+	$stmt = $db-&gt;prepare($sql);  
+	$exeres = $stmt-&gt;execute(array($name, $pwd));  
+	if ($exeres) {  
+	    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)){  
+	        print_r($row);  
+	    }  
+}  
+	</code>
+</pre>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+//使用mysqli连接数据库！
+//使用面向对象的方法调用接口</p>
+<pre>
+	<code>
+		
+//创建对象并打开连接，最后一个参数是选择的数据库名称
+$mysqli = new mysqli('localhost','root','','volunteer');
+//检查连接是否成功
+if (mysqli_connect_errno()){
+	//注意mysqli_connect_error()新特性
+	die('Unable to connect!'). mysqli_connect_error();
+}
+$sql = "select * from vol_msg";
+//执行sql语句，完全面向对象的
+$result = $mysqli-&gt;query($sql);
+while($row = $result-&gt;fetch_array()){
+	echo $row[0];
+}
+
+	</code>
+</pre>
+
+<p><br /></p>
+<hr />
+
+<p><br />
+以上两种连接方式也是最常见的连接方式；以上两种介绍完了；遇到搜索能不能标红？
+<br />
+当然可以！来看如下！
+<br /></p>
+<hr />
+
+<p><br />
+在表单中遍历的时候，咱们可以使用php的一个函数来完成关键字的标红操作
+<br />
+使用str_replace()函数，来看这个函数的定义和用法
+<br />
+str_replace() 函数以其他字符替换字符串中的一些字符（区分大小写）。
+语法
+<br />
+str_replace(find,replace,string,count)
+<br />
+参数 	描述<br />
+find 	必需。规定要查找的值。<br />
+replace 必需。规定替换 find 中的值的值。<br />
+string 	必需。规定被搜索的字符串。<br />
+count 	可选。对替换数进行计数的变量。<br />
+<br />
+具体怎么应用？
+<br /></p>
+<pre>
+	<code>
+		 str_replace($key_word, '&lt;font color=red&gt;'.$key_word.'&lt;/font&gt;',$content);/
+	</code>
+</pre>
+<p><br />
+<br /></p>
+<hr />
+
+<p><br />
+看到以上介绍，还是不懂的同学们可以发送我的邮箱地址私信我；</p>
+<hr />
+
+<pre><code>    03 Sep 2015
+</code></pre>
+
+
+        </div>
+        <p>&#12288;</p>
+    </div>
+<div class="footer container-fluid bg-grey">
+    Design & Code by Joey © 2016
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>

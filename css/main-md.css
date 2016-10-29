@@ -1,0 +1,21 @@
+/** md (Medium devices > 992px) **/
+@media (min-width: 992px) {
+
+    .intro-detail li {
+        margin-right: 15px;
+    }
+
+    .social li {
+        margin-right: 0;
+    }
+
+    .about.container-fluid {
+        margin-top: 50px;
+    }
+
+    .home .portrait {
+        width: 100px;
+        height: 100px;
+    }
+
+}

@@ -1,0 +1,122 @@
+---
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Joey">
+    <meta name="keywords" content="user experience design, ux, ui">
+    <meta name="description" content="Joey's portfolio">
+
+    <title>Guo Fuqiang - a user PHP Programmers</title>
+
+    <!-- CSS -->
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
+    <!--<link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body class="home">
+
+<img class="loading-gif" src="img/loading.gif" alt="loading">
+
+<div class="header container-fluid hidden">
+    <a href="#">
+        <span class="logo">logo</span>
+        <span class="logo-name">Qian Du</span>
+    </a>
+    <span class="menu pull-right">
+        <a href="#" class="selected" data-ripple>首页</a>
+        <a href="#" class="pull-right" data-ripple target="_blank">简历</a>
+    </span>
+</div>
+
+<div class="wrap container-fluid hidden">
+
+    <div class="content">
+
+        <div class="intro">
+            <span class="portrait">portrait</span>
+            <ul class="intro-detail">
+                <li class="location">PHP Programmers</li>
+                <li class="job">PHP 高级工程师</li>
+                <li class="email">qiandu404@outlook.com</li>
+            </ul>
+            <ul class="social">
+                <li><a href="https://github.com/Qianud" class="behance" target="_blank"><i
+                        class="fa fa-github-square" aria-hidden="true"></i></a></li>
+                <li><a href="https://github.com/Qianud" class="pinterest" target="_blank"><i
+                        class="fa fa-weibo" aria-hidden="true"></i></i></a></li>
+                <li><a href="https://github.com/Qianud" class="linkedin" target="_blank"><i
+                        class="fa fa-weixin" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+
+        <!--<div class="home-divider"></div>-->
+
+        <div class="works">
+
+            <div class="row">
+           {% for post in site.posts %}
+                <div class="col col-md-4 col-sm-6 col-xs-12">
+                    <div class="accuve work work4" >
+                        <a href="{{ site.baseurl }}{{ post.url }}">
+                            <div class="header-img bg-img" data-ripple="rgb(248,181,69)"
+                                 data="img/work4.png" style='background-image:url("../img/{{ post.imgurl }}");'></div>
+                            <div class="work-preview">
+                                <h2>{{ post.title }}</h2>
+                                <span>{{ post.tit }}</span>
+                                <span class="tag">App Design</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!--<div class="home-divider mt-0"></div>-->
+
+        <div class="about container-fluid row">
+
+            <div class="col-xs-8 col-xs-offset-4 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-8">
+
+               <h3>Who I am</h3>
+                <div class="self-intro">
+                    <p>I am a <strong>php software engineer</strong> from China.</p><p>I love the Internet industry with all my knowledge;</p>
+                    <p>Please see my resume for more information.</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- The end of about -->
+
+        <div class="footer col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-9 col-md-2 col-md-offset-10">
+            Design & Code by Joey © 2016
+        </div>
+
+        <!-- The end of content-->
+
+    </div>
+
+</body>
+
+<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+<script src="js/jquery.min.js"></script>
+<script src="js/main.js"></script>
+</html>

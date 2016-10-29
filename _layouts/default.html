@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Joey">
+    <meta name="keywords" content="user experience design, ux, ui">
+    <meta name="description" content="Joey's portfolio">
+    <title>Guo Fuqiang - a user PHP Programmers</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+<img class="loading-gif" src="{{ site.baseurl }}/img/loading.gif" alt="loading">
+<div class="header container-fluid collapseda hidden">
+    <a href="../index.html">
+        <span class="logo work-logo">logo</span>
+        <span class="logo-name work-logo-name">Qian Du</span>
+    </a>
+</div>
+<div class="wrap work-detail hidden">
+    <div class="work-header-img"></div>
+    <div class="work-header">
+            <div class="verticle-align-m">
+                <span class="work-name">{{ page.title }}</span>
+                <span class="work-des">{{ page.tit }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="text-intro content-frame">
+        <div class="contaianer-fluid">
+    
+            {{ content }}
+
+        </div>
+        <p>&#12288;</p>
+    </div>
+<div class="footer container-fluid bg-grey">
+    Design & Code by Joey © 2016
+</div>
+</body>
+<script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/js/main.js"></script>
+</html>
