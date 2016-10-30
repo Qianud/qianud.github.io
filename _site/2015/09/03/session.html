@@ -1,0 +1,226 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Joey">
+    <meta name="keywords" content="user experience design, ux, ui">
+    <meta name="description" content="Joey's portfolio">
+    <title>Guo Fuqiang - a user PHP Programmers</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+<img class="loading-gif" src="/img/loading.gif" alt="loading">
+<div class="header container-fluid collapseda hidden">
+    <a href="../index.html">
+        <span class="logo work-logo">logo</span>
+        <span class="logo-name work-logo-name">Qian Du</span>
+    </a>
+</div>
+<div class="wrap work-detail hidden">
+    <div class="work-header-img"></div>
+    <div class="work-header">
+            <div class="verticle-align-m">
+                <span class="work-name">session&cookie！</span>
+                <span class="work-des">掌握什么是session和cookie;</span>
+            </div>
+        </div>
+    </div>
+    <div class="text-intro content-frame">
+        <div class="contaianer-fluid">
+    
+            <blockquote>
+  <p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+</blockquote>
+
+<p><br />
+会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。</p>
+
+<p>本章将系统地讲述Cookie与Session机制，并比较说明什么时候不能用Cookie，什么时候不能用Session。
+<br /></p>
+<hr />
+
+<p><br />
+1.1  Cookie机制
+<br />
+在程序中，会话跟踪是很重要的事情。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。例如，用户A在超市购买的任何商品都应该放在A的购物车内，不论是用户A什么时间购买的，这都是属于同一个会话的，不能放入用户B或用户C的购物车内，这不属于同一个会话。
+<br />
+而Web应用程序是使用HTTP协议传输数据的。HTTP协议是无状态的协议。一旦数据交换完毕，客户端与服务器端的连接就会关闭，再次交换数据需要建立新的连接。这就意味着服务器无法从连接上跟踪会话。即用户A购买了一件商品放入购物车内，当再次购买商品时服务器已经无法判断该购买行为是属于用户A的会话还是用户B的会话了。要跟踪该会话，必须引入一种机制。</p>
+
+<p>Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。</p>
+
+<p>1.1.1  什么是Cookie</p>
+
+<p>Cookie意为“甜饼”，是由W3C组织提出，最早由Netscape社区发展的一种机制。目前Cookie已经成为标准，所有的主流浏览器如IE、Netscape、Firefox、Opera等都支持Cookie。</p>
+
+<p>由于HTTP是一种无状态的协议，服务器单从网络连接上无从知道客户身份。怎么办呢？就给客户端们颁发一个通行证吧，每人一个，无论谁访问都必须携带自己通行证。这样服务器就能从通行证上确认客户身份了。这就是Cookie的工作原理。</p>
+
+<p>Cookie实际上是一小段的文本信息。客户端请求服务器，如果服务器需要记录该用户状态，就使用response向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。服务器还可以根据需要修改Cookie的内容。
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+查看某个网站颁发的Cookie很简单。在浏览器地址栏输入JavaScript:alert (document. cookie)就可以了（需要有网才能查看）。JavaScript脚本会弹出一个对话框显示本网站颁发的所有Cookie的内容，如图1.1所示。
+<img src="/img/cookiesession/1_2.jpg" alt="" />
+查看某个网站颁发的Cookie很简单。在浏览器地址栏输入JavaScript:alert (document. cookie)就可以了（需要有网才能查看）。JavaScript脚本会弹出一个对话框显示本网站颁发的所有Cookie的内容，如图1.1所示。
+<img src="/img/cookiesession/1.1.jpg" alt="" />
+图1.1  Baidu网站颁发的Cookie</p>
+
+<p>图1.1中弹出的对话框中显示的为Baidu网站的Cookie。其中第一行BAIDUID记录的就是笔者的身份helloweenvsfei，只是Baidu使用特殊的方法将Cookie信息加密了。</p>
+
+<p>注意：Cookie功能需要浏览器的支持。</p>
+
+<p>如果浏览器不支持Cookie（如大部分手机中的浏览器）或者把Cookie禁用了，Cookie功能就会失效。</p>
+
+<p>不同的浏览器采用不同的方式保存Cookie。</p>
+
+<p>IE浏览器会在“C:\Documents and Settings\你的用户名\Cookies”文件夹下以文本文件形式保存，一个文本文件保存一个Cookie。
+<br />
+<br /></p>
+<hr />
+
+<p><br />
+<br />
+1.2.3  Session的生命周期</p>
+
+<p>Session保存在服务器端。为了获得更高的存取速度，服务器一般把Session放在内存里。每个用户都会有一个独立的Session。如果Session内容过于复杂，当大量客户访问服务器时可能会导致内存溢出。因此，Session里的信息应该尽量精简。</p>
+
+<p>Session在用户第一次访问服务器的时候自动创建。需要注意只有访问JSP、Servlet等程序时才会创建Session，只访问HTML、IMAGE等静态资源并不会创建Session。如果尚未生成Session，也可以使用request.getSession(true)强制生成Session。</p>
+
+<p>Session生成后，只要用户继续访问，服务器就会更新Session的最后访问时间，并维护该Session。用户每访问服务器一次，无论是否读写Session，服务器都认为该用户的Session“活跃（active）”了一次。</p>
+
+<p>1.2.4  Session的有效期</p>
+
+<p>由于会有越来越多的用户访问服务器，因此Session也会越来越多。为防止内存溢出，服务器会把长时间内没有活跃的Session从内存删除。这个时间就是Session的超时时间。如果超过了超时时间没访问过服务器，Session就自动失效了。</p>
+
+<p>Session的超时时间为maxInactiveInterval属性，可以通过对应的getMaxInactiveInterval()获取，通过setMaxInactiveInterval(longinterval)修改。</p>
+
+<p>Session的超时时间也可以在web.xml中修改。另外，通过调用Session的invalidate()方法可以使Session失效。</p>
+
+<p>1.2.5  Session的常用方法</p>
+
+<p>Session中包括各种方法，使用起来要比Cookie方便得多。Session的常用方法如表1.2所示。</p>
+
+<p>表1.2  HttpSession的常用方法</p>
+
+<p>方  法  名</p>
+
+<p>描    述</p>
+
+<p>void setAttribute(String attribute, Object value)</p>
+
+<p>设置Session属性。value参数可以为任何Java Object。通常为Java Bean。value信息不宜过大</p>
+
+<p>String getAttribute(String attribute)</p>
+
+<p>返回Session属性</p>
+
+<p>Enumeration getAttributeNames()</p>
+
+<p>返回Session中存在的属性名</p>
+
+<p>void removeAttribute(String attribute)</p>
+
+<p>移除Session属性</p>
+
+<p>String getId()</p>
+
+<p>返回Session的ID。该ID由服务器自动创建，不会重复</p>
+
+<p>long getCreationTime()</p>
+
+<p>返回Session的创建日期。返回类型为long，常被转化为Date类型，例如：Date createTime = new Date(session.get CreationTime())</p>
+
+<p>long getLastAccessedTime()</p>
+
+<p>返回Session的最后活跃时间。返回类型为long</p>
+
+<p>int getMaxInactiveInterval()</p>
+
+<p>返回Session的超时时间。单位为秒。超过该时间没有访问，服务器认为该Session失效</p>
+
+<p>void setMaxInactiveInterval(int second)</p>
+
+<p>设置Session的超时时间。单位为秒</p>
+
+<p>void putValue(String attribute, Object value)</p>
+
+<p>不推荐的方法。已经被setAttribute(String attribute, Object Value)替代</p>
+
+<p>Object getValue(String attribute)</p>
+
+<p>不被推荐的方法。已经被getAttribute(String attr)替代</p>
+
+<p>boolean isNew()</p>
+
+<p>返回该Session是否是新创建的</p>
+
+<p>void invalidate()</p>
+
+<p>使该Session失效</p>
+
+<p>Tomcat中Session的默认超时时间为20分钟。通过setMaxInactiveInterval(int seconds)修改超时时间。可以修改web.xml改变Session的默认超时时间。例如修改为60分钟：</p>
+
+<session-config>
+
+   <session-timeout>60</session-timeout>      <!-- 单位：分钟 -->
+
+</session-config>
+
+<p>注意：<session-timeout>参数的单位为分钟，而setMaxInactiveInterval(int s)单位为秒。</session-timeout></p>
+
+<p>1.2.6  Session对浏览器的要求</p>
+
+<p>虽然Session保存在服务器，对客户端是透明的，它的正常运行仍然需要客户端浏览器的支持。这是因为Session需要使用Cookie作为识别标志。HTTP协议是无状态的，Session不能依据HTTP连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，它的值为该Session的id（也就是HttpSession.getId()的返回值）。Session依据该Cookie来识别是否为同一用户。</p>
+
+<p>该Cookie为服务器自动生成的，它的maxAge属性一般为–1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器就会失效。</p>
+
+<p>因此同一机器的两个浏览器窗口访问服务器时，会生成两个不同的Session。但是由浏览器窗口内的链接、脚本等打开的新窗口（也就是说不是双击桌面浏览器图标等打开的窗口）除外。这类子窗口会共享父窗口的Cookie，因此会共享一个Session。</p>
+
+
+
+<br>
+<hr>
+<!-- 多说评论框 start -->
+	<div class="ds-thread content-frame" data-thread-key="/2015/09/03/session.html" data-title="session&cookie！" data-url="/2015/09/03/session.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"qianud"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+        </div>
+        <p>&#12288;</p>
+    </div>
+
+<!-- 多说代码 
+
+<section class="post-comments">
+
+  
+  
+  
+  
+</section>
+<!-- 多说代码 -->
+
+<div class="footer container-fluid bg-grey">
+    Design & Code by Joey © 2016
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>
