@@ -70,9 +70,10 @@
 
             <div class="row">
 
-  
-
-           {% for post in site.posts %}
+  {% for post in site.posts %}
+   &#12288;&#12288;<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>&#12288;&#12288;
+{% endfor %}
+          <!--  {% for post in site.posts %}
                 <div class="col col-md-4 col-sm-6 col-xs-12">
                     <div class="accuve work work4" >
                         <a href="{{ site.baseurl }}{{ post.url }}">
@@ -86,7 +87,7 @@
                         </a>
                     </div>
                 </div>
-                {% endfor %}
+                {% endfor %} -->
             </div>
         </div>  
         <!--<div class="home-divider mt-0"></div>-->
